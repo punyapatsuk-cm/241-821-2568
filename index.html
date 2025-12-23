@@ -7,12 +7,24 @@
     <title>Document</title>
     <style>
         /*1.แต่งใคร ? (id, classm DOM) 2.แต่งอะไร ? */
+        @font-face {
+            font-family: 'Kanit';
+            src: url(./Kanit/Kanit-Black.ttf)
+        }
+
         body {
             background-color: #ffb6e9;
+            font-family: 'Kanit';
         }
 
         #Register-form {
             color: blueviolet;
+            margin-left: 109px;
+            border: 2px solid yellow;
+            padding-right: 20px;
+            margin-right: 20px;
+            border: 3px solid yellow;
+            text-align: center;
         }
 
         .form-control {
@@ -25,8 +37,8 @@
 </head>
 
 <body>
+    <div id="Register-form">Register Form </div>
     <!-- ส่วนนี้จะแสดงบนหน้าเว็บ Browser -->
-    <h1 id="Register-form">Register Form</h1>
     ชื่อ : <input class="form-control" type="text" name="name">
     นามสกุล : <input class="form-control" type="text" name="surname"><br>
     อายุ : <input type="text" name="age" min="0" max="150"><br>
