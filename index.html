@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*1.แต่งใคร ? (id, classm DOM) 2.แต่งอะไร ? */
+        body {
+            background-color: #ffb6e9;
+        }
+
+        #Register-form {
+            color: blueviolet;
+        }
+
+        .form-control {
+            border: 2px solid yellow;
+            margin-bottom: 10px;
+        }
+    </style>
+    <!-- ส่วนนี้จะไม่แสดงบนหน้าเว็บ Browser -->
+
+</head>
+
+<body>
+    <!-- ส่วนนี้จะแสดงบนหน้าเว็บ Browser -->
+    <h1 id="Register-form">Register Form</h1>
+    ชื่อ : <input class="form-control" type="text" name="name">
+    นามสกุล : <input class="form-control" type="text" name="surname"><br>
+    อายุ : <input type="text" name="age" min="0" max="150"><br>
+
+    เพศ :
+    <input type="radio" name="gender" value="male">ชาย
+    <input type="radio" name="gender" value="female">หญิง<br>
+
+    งานอดิเรก :
+    <input type="checkbox" name="hobby" value="reading">อ่านหนังสือ
+    <input type="checkbox" name="hobby" value="traveling">ท่องเที่ยว
+    <input type="checkbox" name="hobby" value="sports">กีฬา<br>
+
+    คำอธิบายตัวเอง :<br>
+    <textarea name="description" row="4" cols="50"></textarea><br>
+    <input type="submit" value="Submit">
+
+</body>
+
+</html>
