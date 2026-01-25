@@ -1,0 +1,144 @@
+/* นำเข้า Font เพื่อความทันสมัย */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+
+/* --- ธีมหลัก: พื้นหลังสีเหลืองสดใส --- */
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #FFEB3B; /* สีเหลืองสด */
+    background-image: linear-gradient(135deg, #FFEB3B 25%, #FDD835 100%); /* เพิ่มมิติเล็กน้อย */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- กล่องคอนเทนเนอร์ --- */
+.container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    padding: 35px;
+    border-radius: 20px;
+    /* ใช้ขอบหนาสีน้ำเงิน และเงาสีแดง เพื่อเพิ่มความเยอะของสี */
+    border: 5px solid #1565C0; /* ขอบน้ำเงินเข้มหนาๆ */
+    box-shadow: 10px 10px 0px #D32F2F; /* เงาแบบทึบสีแดงเข้ม */
+}
+
+/* --- หัวข้อหลัก --- */
+.header {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: #D32F2F; /* สีแดงแรงฤทธิ์ */
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0px #FFEB3B; /* เงาข้อความสีเหลือง */
+}
+
+/* --- การจัดวางฟอร์ม --- */
+.form-input {
+    margin-bottom: 25px;
+    color: #1565C0; /* สีข้อความทั่วไปในฟอร์มเป็นสีน้ำเงิน */
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* หัวข้อของ Input (ชื่อ, นามสกุล, อายุ, เพศ) */
+.header-form {
+    margin-bottom: 10px;
+    display: inline-block;
+    background-color: #1565C0; /* พื้นหลังน้ำเงิน */
+    color: #FFEB3B; /* ตัวอักษรเหลือง */
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+/* --- ปรับแต่ง Input และ Textarea --- */
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 15px;
+    /* ขอบสีแดงพื้นฐาน */
+    border: 3px solid #EF9A9A; 
+    background-color: #FFFDE7; /* พื้นหลัง input เหลืองอ่อนๆ */
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* เมื่อคลิกที่ Input */
+input:focus, textarea:focus {
+    border-color: #1565C0; /* เปลี่ยนขอบเป็นสีน้ำเงินเข้ม */
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 235, 59, 0.5); /* เรืองแสงสีเหลือง */
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+    margin-top: 10px;
+}
+
+/* --- Flexbox จัดระเบียบ Radio/Checkbox --- */
+.flex {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.gender .flex {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+/* ปรับแต่งสีของปุ่มเลือก (Radio/Checkbox) */
+input[type="radio"], input[type="checkbox"] {
+    accent-color: #D32F2F; /* สีแดงเวลากดเลือก */
+    transform: scale(1.2); /* ขยายให้ใหญ่ขึ้นนิดนึง */
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/* --- ส่วนของปุ่มกด --- */
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.button {
+    background-color: #D32F2F; /* พื้นหลังสีแดง */
+    color: #FFEB3B; /* ตัวอักษรสีเหลือง */
+    border: 4px solid #1565C0; /* ขอบสีน้ำเงินหนาๆ */
+    padding: 15px 50px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 0px #1565C0; /* เงาปุ่มแบบทึบสีน้ำเงิน */
+    text-transform: uppercase;
+}
+
+/* เมื่อเอาเมาส์ชี้ปุ่ม */
+.button:hover {
+    background-color: #FFEB3B; /* เปลี่ยนพื้นเป็นเหลือง */
+    color: #D32F2F; /* เปลี่ยนตัวอักษรเป็นแดง */
+    border-color: #D32F2F; /* เปลี่ยนขอบเป็นแดง */
+    box-shadow: 0 6px 0px #D32F2F; /* เปลี่ยนเงาเป็นแดง */
+    transform: translateY(-2px);
+}
+
+/* เมื่อกดปุ่ม */
+.button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0px #D32F2F;
+}
