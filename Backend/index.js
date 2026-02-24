@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mysql = require('mysql2/promise');
 const app = express();
 const port = 8000
 
@@ -8,28 +9,31 @@ app.use(bodyParser.json());
 let users = []
 let counter = 1;
 
-// path = GET /test
-app.get('/test', (req, res) => {
-    let user ={
-        name: 'John Doe',
-        age: 30,
-        email: 'john.doe@example.com'
-    }
-    res.json(user);
-});
-app.get('/users', (req, res) => {
-    res.json(users);
-});
+let conn = null;
+const initDBConnection = async () => {
+    conn = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'root',
+        database: 'webdb',
+        port: 8821
+    })
+}
+
+//path = GET /users สำหรับเก็บข้อมูล user ทั้งหมดที่มีในระบบ
+app.get('/users', async (req, res) => {
+    const results = await conn.query('SELECT * FROM users');
+    res.json(results[0]);
+})
+
 
 // path = POST /user
-app.post('/user', (req, res) => {
+app.post('/users', async    (req, res) => {
     let user = req.body;
-    user.id = counter
-    counter += 1 
-    users.push(user);
+    const results = await conn.query('INSERT INTO users SET ?', user);
     res.json({
-        message: 'User added successfully',
-        user: user
+        message: 'User created successfully',
+        data: results[0]
     });
 });
 
@@ -42,10 +46,10 @@ app.patch('/user/:id', (req, res) => {
     let selectedIndex = users.findIndex(user => user.id == id);
 
     // update ข้อมูล user
-    if (updateUser.name){
+    if (updateUser.name) {
         users[selectedIndex].name = updateUser.name;
-    }   
-    if (updateUser.email){
+    }
+    if (updateUser.email) {
         users[selectedIndex].email = updateUser.email;
     }
 
@@ -53,13 +57,13 @@ app.patch('/user/:id', (req, res) => {
     res.json({
         message: 'User updated successfully',
         data: {
-        user: updateUser,
-        indexUpdated: selectedIndex
+            user: updateUser,
+            indexUpdated: selectedIndex
         }
     });
 });
 
-// path = DELETE /user/:id
+// path = DELETE /user/:id       
 app.delete('/user/:id', (req, res) => {
     let id = req.params.id;
 
@@ -72,8 +76,9 @@ app.delete('/user/:id', (req, res) => {
         message: 'User deleted successfully',
         indexDeleted: selectedIndex
     });
-}); 
+});
 
-app.listen(port, () => {
+app.listen(port, async () => {
+    await initDBConnection();
     console.log(`Server is running on port ${port}`)
 });
