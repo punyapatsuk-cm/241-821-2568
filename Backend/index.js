@@ -65,21 +65,54 @@ app.get('/test', (req, res) => {
 app.get('/users', (req, res) => {
     res.json(users);
 });
+// validataData แจ้งเตือนให้กรอก
+const validateData = (userData) => {
+    let errors = [];
+    if (!userData.firstName) {
+        errors.push('กรุณากรอกชื่อ');
+    }
+    if (!userData.lastName) {
+        errors.push('กรุณากรอกนามสกุล');
+    }
+    if (!userData.age) {
+        errors.push('กรุณากรอกอายุ');
+    }
+    if (!userData.gender) {
+        errors.push('กรุณาเลือกเพศ');
+    }
+    if (!userData.interests) {
+        errors.push('กรุณาเลือกความสนใจอย่างน้อย 1 อย่าง');
+    }
+    if (!userData.description) {
+        errors.push('กรุณากรอกคำอธิบายตัวเอง');
+    }
+    return errors;
+}   
+
+
 // path = POST /users
 app.post('/users', async (req, res) => {
     try {
         let user = req.body;
+        const errors = validateData(user);
+        if (errors.length > 0 ) {
+            throw{
+                message: 'กรอกข้อมูลไม่ครบถ้วน',
+                errors: errors
+            }
+        }
         const result = await conn.query('INSERT INTO users SET ?', user);
         console.log('result', result)
         res.json({
             message: 'User added successfully',
             data: result[0]
         });
-
     } catch (error) {
-        console.error('Error', error);
+        const errorMessage = error.message || 'Error  creating user'
+        const errors = error.errors || [];
+        console.error('Error creating user', error.message);
         res.status(500).json({
-            message: 'Error adding user',
+            message: errorMessage,
             error: error
         });
     }
