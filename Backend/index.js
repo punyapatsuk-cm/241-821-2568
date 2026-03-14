@@ -109,7 +109,7 @@ app.post('/users', async (req, res) => {
         });
     } catch (error) {
         const errorMessage = error.message || 'Error  creating user'
-        const errors = error.errors || [];
+        const errors = error.errors || [];  
         console.error('Error creating user', error.message);
         res.status(500).json({
             message: errorMessage,
